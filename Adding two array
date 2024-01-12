@@ -1,0 +1,36 @@
+public static int[] addTwoArrays(int[] one, int[] two) {
+        // int[] one = {9, 5, 7, 4, 9, 8};
+        // int[] two = {5, 6, 5, 7, 8};
+        int n1 = one.length, n2 = two.length;
+        int a = n1 - 1, b = n2 - 1;
+        int sizeOfAns = Math.max(n1, n2) + 1;
+        int[] ans = new int[sizeOfAns];
+        int carry = 0, ansIdx = sizeOfAns - 1;;
+        while(a >= 0 && b >= 0) {
+            int sum = one[a] + two[b] + carry;
+            int r = sum % 10;
+            carry = sum / 10;
+
+            ans[ansIdx] = r;
+            a --;
+            b --;
+            ansIdx --;
+        }
+        while(a >= 0) {
+            int sum = one[a] + carry;
+            int r = sum % 10;
+            carry = sum / 10;
+            ans[ansIdx] = r;
+            a --;
+            ansIdx --;
+        }
+        while(b >= 0) {
+            int sum = two[b] + carry;
+            int r = sum % 10;
+            carry = sum / 10;
+            ans[ansIdx] = r;
+            b --;
+            ansIdx --;
+        }
+
+        ans[0] = carry;
